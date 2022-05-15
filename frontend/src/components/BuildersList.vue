@@ -2,8 +2,10 @@
   <section class="main">
     <ul class="builders-list">
       <li class="builder-item" v-for="builder in builders" :key="builder.name">
+        <router-link :to="{name: 'builderCard', params: { name: builder.name }}"> 
         {{builder.name}}
         {{builder.houses}}
+        </router-link>
       </li>
     </ul>
   </section>
