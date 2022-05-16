@@ -1,2 +1,5 @@
 Django==3.2
 djangorestframework==3.13.1
+python3-dev
+libpq-dev
+psycopg2
