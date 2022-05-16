@@ -14,7 +14,6 @@
 <script>
 export default {
   name: "BuildersList",
-
   computed: {
     builders() {
       return this.$store.getters.BUILDERS;
