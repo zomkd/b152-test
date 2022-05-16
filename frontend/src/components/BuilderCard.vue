@@ -23,15 +23,20 @@
         </li>
       </ul>
     </div>
-    <div class="leave-comments-form"></div>
+    <div class="leave-comments-form">
+        <CommentFormVue></CommentFormVue>
+    </div>
   </section>
 </template>
 
 <script>
+import CommentFormVue from "./CommentForm.vue";
 export default {
   props: ["name"],
   name: "BuilderCard",
-
+  components: {
+    CommentFormVue,
+  },
   computed: {
     houses() {
       return this.$store.getters.HOUSES;
