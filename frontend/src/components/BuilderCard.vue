@@ -1,6 +1,8 @@
 <template>
   <section class="builder-card-main">
-    <div class="builder-description">{{ this.name }} - testtest</div>
+    <div class="builder-description">
+      {{ this.name }} - {{ getBuilderDescription }}
+    </div>
     <ul class="houses-list">
       <li class="houses-item" v-for="house in houses" :key="house.address">
         <router-link
@@ -24,7 +26,7 @@
       </ul>
     </div>
     <div class="leave-comments-form">
-        <CommentFormVue></CommentFormVue>
+      <CommentFormVue></CommentFormVue>
     </div>
   </section>
 </template>
@@ -41,8 +43,14 @@ export default {
     houses() {
       return this.$store.getters.HOUSES;
     },
+    builders() {
+      return this.$store.getters.BUILDERS;
+    },
     buildersComments() {
       return this.$store.getters.BUILDERS_COMMENTS;
+    },
+    getBuilderDescription() {
+      return this.builders.find((e) => e.name === this.name).description;
     },
   },
 };
