@@ -6,7 +6,7 @@ const state = {
         description: 'test Pushkina,1 description',
     },
     {
-        name: 'St.P',
+        city: 'St.P',
         address: 'Pushkina,4',
         builder: 'pik',
         description: 'test Pushkina,4 description',
