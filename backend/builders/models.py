@@ -27,8 +27,8 @@ class House(models.Model):
 class Comment(models.Model):
     '''Модель комментариев'''
 
-    builder = models.ForeignKey(Builder, on_delete=models.CASCADE)
-    house = models.ForeignKey(House, on_delete=models.CASCADE)
+    builder = models.ForeignKey(Builder, on_delete=models.CASCADE, blank=True, null=True)
+    house = models.ForeignKey(House, on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=32)
     text = models.TextField(max_length=128)
     created_on = models.DateTimeField(auto_now_add=True)

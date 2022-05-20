@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Builder, House, Comment
 
-# Register your models here.
+
+admin.site.register(Builder)
+admin.site.register(House)
+admin.site.register(Comment)
