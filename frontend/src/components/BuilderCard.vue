@@ -39,6 +39,9 @@ export default {
   components: {
     CommentFormVue,
   },
+  mounted() {
+    this.$store.dispatch("GET_HOUSES");
+  },
   computed: {
     houses() {
       return this.$store.getters.HOUSES;

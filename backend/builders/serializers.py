@@ -3,9 +3,10 @@ from rest_framework import serializers
 from .models import Builder, House, Comment
 
 class BuilderSerializer(serializers.HyperlinkedModelSerializer):
+    houses = serializers.ReadOnlyField()
     class Meta:
         model = Builder
-        fields = ('id', 'name', 'description')
+        fields = ('id', 'name', 'description', 'houses')
 
 class HouseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -15,4 +16,4 @@ class HouseSerializer(serializers.HyperlinkedModelSerializer):
 class CommentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Comment
-        fields = ('id', 'builder', 'house', 'name', 'text', 'created_on', 'author')
+        fields = ('id', 'name', 'text', 'created_on')

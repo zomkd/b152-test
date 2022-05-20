@@ -2,9 +2,11 @@
   <section class="main">
     <ul class="builders-list">
       <li class="builder-item" v-for="builder in builders" :key="builder.name">
-        <router-link :to="{name: 'builderCard', params: { name: builder.name }}"> 
-        {{builder.name}}
-        {{builder.houses}}
+        <router-link
+          :to="{ name: 'builderCard', params: { name: builder.name } }"
+        >
+          {{ builder.name }}
+          {{ builder.houses }}
         </router-link>
       </li>
     </ul>
@@ -14,6 +16,9 @@
 <script>
 export default {
   name: "BuildersList",
+  mounted() {
+    this.$store.dispatch("GET_BUILDERS");
+  },
   computed: {
     builders() {
       return this.$store.getters.BUILDERS;

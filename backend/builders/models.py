@@ -8,6 +8,12 @@ class Builder(models.Model):
     name = models.CharField(max_length=32)
     description = models.TextField(max_length=256)
 
+    def houses(self):
+        builders = Builder.objects.get(name=self.name)
+        houses = House.objects.filter(builder_id=builders).count()
+
+        return houses
+
     def __str__(self):
         return self.name
 
@@ -21,7 +27,7 @@ class House(models.Model):
     description = models.TextField(max_length=256)
 
     def __str__(self):
-        return self.city
+        return self.address
 
 
 class Comment(models.Model):

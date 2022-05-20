@@ -2,7 +2,7 @@
     <div class="comment-form-main">
         <form method="post" @submit.prevent="submit">
             <input v-model="name" class="input-name" placeholder="Введите Ваше имя" required>
-            <textarea v-model="message" class="input-message" placeholder="Оставьте комментарий..." required></textarea>
+            <textarea v-model="text" class="input-text" placeholder="Оставьте комментарий..." required></textarea>
             <input type="submit" value="Отправить">
         </form>
     </div>
@@ -14,7 +14,7 @@ export default {
  data () {
      return {
          name: "",
-         message: "",
+         text: "",
      }
  },
 
