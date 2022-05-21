@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -26,6 +25,10 @@ class House(models.Model):
     builder = models.ForeignKey(Builder, on_delete=models.CASCADE)
     description = models.TextField(max_length=256)
 
+    def builder_name(self):
+        builder = Builder.objects.get(id=self.builder.id)
+        return builder.name
+
     def __str__(self):
         return self.address
 
@@ -33,12 +36,21 @@ class House(models.Model):
 class Comment(models.Model):
     '''Модель комментариев'''
 
-    builder = models.ForeignKey(Builder, on_delete=models.CASCADE, blank=True, null=True)
-    house = models.ForeignKey(House, on_delete=models.CASCADE, blank=True, null=True)
+    builder = models.ForeignKey(
+        Builder, on_delete=models.CASCADE, blank=True, null=True)
+    house = models.ForeignKey(
+        House, on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=32)
     text = models.TextField(max_length=128)
     created_on = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def house_or_builder_name(self):
+        if self.house != None:
+            house = House.objects.get(id=self.house.id)
+            return house.address
+        else:
+            builder = Builder.objects.get(id=self.builder.id)
+            return builder.name
 
     class Meta:
         ordering = ["created_on"]

@@ -17,16 +17,16 @@
       <ul class="builders-comments-list">
         <li
           class="builders-comments-item"
-          v-for="comments in buildersComments"
-          :key="comments.text"
+          v-for="comment in comments"
+          :key="comment.text"
         >
-          {{ comments.name }}
-          {{ comments.text }}
+          {{ comment.name }}
+          {{ comment.text }}
         </li>
       </ul>
     </div>
     <div class="leave-comments-form">
-      <CommentFormVue></CommentFormVue>
+      <CommentFormVue :isBuilder="true" :id="this.getID"></CommentFormVue>
     </div>
   </section>
 </template>
@@ -41,20 +41,25 @@ export default {
   },
   mounted() {
     this.$store.dispatch("GET_HOUSES");
+    this.$store.dispatch("GET_COMMENTS");
   },
   computed: {
     houses() {
-      return this.$store.getters.HOUSES;
+      const houses = this.$store.getters.HOUSES;
+      return houses.filter((e) => e.builder_name === this.name);
     },
-    builders() {
-      return this.$store.getters.BUILDERS;
-    },
-    buildersComments() {
-      return this.$store.getters.BUILDERS_COMMENTS;
+    comments() {
+      const comments = this.$store.getters.COMMENTS;
+      return comments.filter((e) => e.builder != null && e.house_or_builder_name === this.name);
     },
     getBuilderDescription() {
-      return this.builders.find((e) => e.name === this.name).description;
+      const builders = this.$store.getters.BUILDERS;
+      return builders.find((e) => e.name === this.name).description;
     },
+    getID() {
+      const builders = this.$store.getters.BUILDERS;
+      return builders.find((e) => e.name === this.name).id;
+    }
   },
 };
 </script>
