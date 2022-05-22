@@ -1,10 +1,29 @@
 <template>
-  <section class="builder-card-main">
-    <div class="builder-description">
-      {{ this.name }} - {{ getBuilderDescription }}
+  <section
+    class="builder-card-main main w-full bg-white rounded-lg shadow-lg lg:full"
+  >
+    <h2 class="text-2xl ml-8 mb-3">
+      Застройщик: <span class="font-semibold">{{ this.name }}</span>
+    </h2>
+    <div class="builder-description mb-3 ml-8">
+      {{ getBuilderDescription }}
     </div>
-    <ul class="houses-list">
-      <li class="houses-item" v-for="house in houses" :key="house.address">
+    <h2 class="text-2xl ml-8 mb-1">Готовые дома</h2>
+    <ol
+      class="
+        list-decimal
+        houses-list
+        lg:w-1/4
+        divide-y-2 divide-gray-100
+        mb-3
+        ml-4
+      "
+    >
+      <li
+        class="houses-item ml-8 py-3 hover:bg-blue-600 hover:text-blue-200"
+        v-for="house in houses"
+        :key="house.address"
+      >
         <router-link
           :to="{ name: 'houseCard', params: { address: house.address } }"
         >
@@ -12,16 +31,28 @@
           {{ house.address }}
         </router-link>
       </li>
-    </ul>
+    </ol>
     <div class="comments">
-      <ul class="builders-comments-list">
+      <ul class="builders-comments-list rounded ml-8">
+        <h2 class="text-2xl mb-3">Список комментариев</h2>
         <li
           class="builders-comments-item"
           v-for="comment in comments"
-          :key="comment.text"
+          :key="comment.id"
         >
-          {{ comment.name }}
-          {{ comment.text }}
+          <div class="mb-4">
+            <div class="flex justify-between mb-1">
+              <p class="text-grey-darkest leading-normal text-lg">
+                {{ comment.text }}
+              </p>
+            </div>
+            <div class="text-gray-500 leading-normal text-sm">
+              <p>
+                {{ comment.name }}<span class="mx-1 text-xs">&bull;</span>
+                {{ comment.created_on.slice(0, 10) }}
+              </p>
+            </div>
+          </div>
         </li>
       </ul>
     </div>
@@ -50,7 +81,9 @@ export default {
     },
     comments() {
       const comments = this.$store.getters.COMMENTS;
-      return comments.filter((e) => e.builder != null && e.house_or_builder_name === this.name);
+      return comments.filter(
+        (e) => e.builder != null && e.house_or_builder_name === this.name
+      );
     },
     getBuilderDescription() {
       const builders = this.$store.getters.BUILDERS;
@@ -59,7 +92,7 @@ export default {
     getID() {
       const builders = this.$store.getters.BUILDERS;
       return builders.find((e) => e.name === this.name).id;
-    }
+    },
   },
 };
 </script>
