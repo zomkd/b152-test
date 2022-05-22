@@ -1,6 +1,7 @@
 <!-- Компонента отображения главной страницы -->
 <template>
   <div class="flex flex-col justify-center items-center">
+    <div v-if="builders.length() == 0"> Нет записей </div> 
     <section class="main w-full bg-white rounded-lg shadow-lg lg:w-1/3">
       <ul class="builders-list divide-y-2 divide-gray-100">
         <li
