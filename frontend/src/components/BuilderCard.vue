@@ -57,18 +57,19 @@
       </ul>
     </div>
     <div class="leave-comments-form">
-      <CommentFormVue :isBuilder="true" :id="this.getID"></CommentFormVue>
+      <CommentForm :isBuilder="true" :id="this.getID"></CommentForm>
     </div>
   </section>
 </template>
 
 <script>
-import CommentFormVue from "./CommentForm.vue";
+import CommentForm from "./CommentForm.vue";
+
 export default {
   props: ["name"],
   name: "BuilderCard",
   components: {
-    CommentFormVue,
+    CommentForm,
   },
   mounted() {
     this.$store.dispatch("GET_HOUSES");
