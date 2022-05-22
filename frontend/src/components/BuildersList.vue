@@ -1,5 +1,8 @@
 <template>
   <section class="main">
+    <h1 class="text-3xl font-bold underline">
+    Привет мир!
+  </h1>
     <ul class="builders-list">
       <li class="builder-item" v-for="builder in builders" :key="builder.name">
         <router-link
@@ -27,8 +30,8 @@ export default {
 };
 </script>
 
-<style>
+<!-- <style>
 .builder-item {
   cursor: pointer;
 }
-</style>
+</style> -->
