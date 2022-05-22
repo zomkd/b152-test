@@ -8,6 +8,7 @@ class Builder(models.Model):
     description = models.TextField(max_length=256)
 
     def houses(self):
+        '''Функция добавляет поле в серализатор, содержащие количестов домов'''
         builders = Builder.objects.get(name=self.name)
         houses = House.objects.filter(builder_id=builders).count()
 
@@ -26,6 +27,7 @@ class House(models.Model):
     description = models.TextField(max_length=256)
 
     def builder_name(self):
+        '''Функция добавляет поле в серализатор, содержащие имя застройщика'''
         builder = Builder.objects.get(id=self.builder.id)
         return builder.name
 
@@ -45,6 +47,9 @@ class Comment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     def house_or_builder_name(self):
+        '''Функция добавляет поле в серализатор, 
+        содержащие имя/адрес застройщика/дома, 
+        под которым оставили комментарий'''
         if self.house != None:
             house = House.objects.get(id=self.house.id)
             return house.address
