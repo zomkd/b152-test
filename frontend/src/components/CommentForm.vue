@@ -1,3 +1,4 @@
+<!-- Компонента отображения формы комментриев -->
 <template>
   <div
     class="
@@ -77,17 +78,16 @@ export default {
   },
   methods: {
     submit() {
+      
       let payload = { name: this.name, text: this.text };
-      if (this.isBuilder) {
+      if (this.isBuilder) { ///проверка на то, кто оставил комментарий: застройщик или нет
         payload["builder"] = this.id;
         payload["house"] = null;
       } else {
         payload["builder"] = null;
         payload["house"] = this.id;
       }
-      console.log(payload);
       this.$store.dispatch("SAVE_COMMENT", payload);
-      console.log("triggers");
     },
   },
 };

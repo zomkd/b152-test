@@ -30,7 +30,7 @@ const actions = {
             console.log(error)
         }
     },
-    async SAVE_COMMENT({commit}, payload) {
+    async SAVE_COMMENT({ commit }, payload) {
         try {
             const data = await axios.post('http://localhost:8000/comments/', {
                 name: payload.name,
@@ -40,7 +40,7 @@ const actions = {
             })
             console.log(payload)
             commit('PUSH_COMMENTS', data.data)
-        }   
+        }
         catch (error) {
             alert(error)
             console.log(error)

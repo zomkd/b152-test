@@ -1,3 +1,4 @@
+<!-- Компонента отображения страницы домов -->
 <template>
   <section class="main w-full bg-white rounded-lg shadow-lg lg:full">
     <h2 class="text-2xl ml-8 mb-3">
@@ -56,7 +57,7 @@ export default {
     сomments() {
       const comments = this.$store.getters.COMMENTS;
       return comments.filter(
-        (e) => e.house != null && e.house_or_builder_name === this.address
+        (e) => e.house != null && e.house_or_builder_name === this.address /// выбор тех комментариев, которые оставили под этим домом
       );
     },
     builders() {

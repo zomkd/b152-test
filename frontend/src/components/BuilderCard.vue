@@ -1,3 +1,4 @@
+<!-- Компонента отображения страницы застройщика -->
 <template>
   <section
     class="builder-card-main main w-full bg-white rounded-lg shadow-lg lg:full"
@@ -83,7 +84,7 @@ export default {
     comments() {
       const comments = this.$store.getters.COMMENTS;
       return comments.filter(
-        (e) => e.builder != null && e.house_or_builder_name === this.name
+        (e) => e.builder != null && e.house_or_builder_name === this.name /// выбор тех комментариев, которые оставили под этим застройщиком
       );
     },
     getBuilderDescription() {

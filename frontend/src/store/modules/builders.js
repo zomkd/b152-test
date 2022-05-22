@@ -2,18 +2,6 @@ import axios from 'axios';
 
 const state = {
     builders: [],
-    // builders: [{
-    //     name: 'ula',
-    //     houses: 5,
-    //     description: 'test ula description',
-    // },
-    // {
-    //     name: 'pik',
-    //     houses: 22,
-    //     description: 'test pik description',
-    // }
-    // ],
-
 };
 const getters = {
     BUILDERS: state => {
@@ -30,14 +18,14 @@ const mutations = {
 const actions = {
     async GET_BUILDERS({ commit }) {
         try {
-          const data = await axios.get('http://localhost:8000/builders/')
+            const data = await axios.get('http://localhost:8000/builders/')
             commit('SET_BUILDERS', data.data)
-          }
-          catch (error) {
-              alert(error)
-              console.log(error)
-          }
-      }
+        }
+        catch (error) {
+            alert(error)
+            console.log(error)
+        }
+    }
 };
 export default {
     state,
